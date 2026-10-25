@@ -141,14 +141,14 @@ functions:
 
 Every option is described in the [configuration reference](docs/README.md):
 
-| Page                                         | Describes                                              |
-| -------------------------------------------- | ------------------------------------------------------ |
-| [Project manifest](docs/project-manifest.md) | Groups, globs and how paths are resolved               |
-| [Rules file](docs/rules-file.md)             | Top-level keys of a rules file and the `fileName` rule |
-| [Classes](docs/classes.md)                   | `count`, `name`, `export`, `implements`, `decorators`  |
-| [Methods](docs/methods.md)                   | Constraints on class methods, grouped by visibility    |
-| [Functions](docs/functions.md)               | Constraints on top-level functions                     |
-| [Common values](docs/common-values.md)       | Counts, names and decorators                           |
+| Page                                         | Describes                                                  |
+| -------------------------------------------- | ---------------------------------------------------------- |
+| [Project manifest](docs/project-manifest.md) | Groups, globs and how paths are resolved                   |
+| [Rules file](docs/rules-file.md)             | Top-level keys of a rules file, `fileName` and `fileLines` |
+| [Classes](docs/classes.md)                   | `count`, `name`, `export`, `implements`, `decorators`      |
+| [Methods](docs/methods.md)                   | Constraints on class methods, grouped by visibility        |
+| [Functions](docs/functions.md)               | Constraints on top-level functions                         |
+| [Common values](docs/common-values.md)       | Counts, names and decorators                               |
 
 Ready-made examples are in [demos/](demos/).
 

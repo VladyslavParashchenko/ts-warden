@@ -4,14 +4,14 @@
 - a **project manifest** that maps globs to rules files;
 - **rules files** that describe what the matched files must contain.
 
-| Page                                    | Describes                                              |
-| --------------------------------------- | ------------------------------------------------------ |
-| [Project manifest](project-manifest.md) | Groups, globs and how paths are resolved               |
-| [Rules file](rules-file.md)             | Top-level keys of a rules file and the `fileName` rule |
-| [Classes](classes.md)                   | Options of the `classes` section                       |
-| [Methods](methods.md)                   | Options of `classes.methods`                           |
-| [Functions](functions.md)               | Options of the `functions` section                     |
-| [Common values](common-values.md)       | Counts, names and decorators shared by several options |
+| Page                                    | Describes                                                  |
+| --------------------------------------- | ---------------------------------------------------------- |
+| [Project manifest](project-manifest.md) | Groups, globs and how paths are resolved                   |
+| [Rules file](rules-file.md)             | Top-level keys of a rules file, `fileName` and `fileLines` |
+| [Classes](classes.md)                   | Options of the `classes` section                           |
+| [Methods](methods.md)                   | Options of `classes.methods`                               |
+| [Functions](functions.md)               | Options of the `functions` section                         |
+| [Common values](common-values.md)       | Counts, names and decorators shared by several options     |
 
 ## Conventions used in these pages
 

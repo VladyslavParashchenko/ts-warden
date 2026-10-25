@@ -1,6 +1,7 @@
 import type { SourceFile } from "ts-morph"
 import type { RulesFile } from "../schemes/index.js"
 import { classRules } from "./classes/index.js"
+import { fileLinesRule } from "./file-lines.js"
 import { fileNameRule } from "./file-name.js"
 import { functionRules } from "./functions/index.js"
 import type { Issue, Rule } from "./types.js"
@@ -17,6 +18,7 @@ function runSection<T>(file: SourceFile, section: string, rules: Rule<T>[], conf
 export function checkFile(file: SourceFile, rules: RulesFile): Issue[] {
     return [
         ...fileNameRule(file, rules),
+        ...fileLinesRule(file, rules),
         ...(rules.classes ? runSection(file, "classes", classRules, rules.classes) : []),
         ...(rules.functions ? runSection(file, "functions", functionRules, rules.functions) : []),
     ]

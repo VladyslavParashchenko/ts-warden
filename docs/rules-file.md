@@ -1,15 +1,17 @@
 # Rules file
 
-A rules file describes what every file matched by its group must contain. It has three top-level keys; each is optional, but at least one must be set.
+A rules file describes what every file matched by its group must contain. It has four top-level keys; each is optional, but at least one must be set.
 
-| Key                     | Value                     | Description                                   |
-| ----------------------- | ------------------------- | --------------------------------------------- |
-| [`fileName`](#filename) | `kebab-case`              | The file is named after its class or function |
-| `classes`               | [Classes](classes.md)     | Rules for top-level classes                   |
-| `functions`             | [Functions](functions.md) | Rules for top-level functions                 |
+| Key                       | Value                           | Description                                   |
+| ------------------------- | ------------------------------- | --------------------------------------------- |
+| [`fileName`](#filename)   | `kebab-case`                    | The file is named after its class or function |
+| [`fileLines`](#filelines) | [count](common-values.md#count) | Number of lines in the file                   |
+| `classes`                 | [Classes](classes.md)           | Rules for top-level classes                   |
+| `functions`               | [Functions](functions.md)       | Rules for top-level functions                 |
 
 ```yaml
 fileName: kebab-case
+fileLines: { max: 300 }
 classes:
     count: 1
     name:
@@ -50,4 +52,18 @@ The rule passes when the file name matches **any** candidate. The violation is r
 ```
 File name "create-user" must be "create-user.use-case" for class "CreateUserUseCase"
 File name "profile" must be one of: "user-profile" for class "UserProfile", "load-profile" for function "loadProfile"
+```
+
+## `fileLines`
+
+**Value:** [count](common-values.md#count) · **Rule id:** `fileLines`
+
+Number of lines in the file. Every line counts, including blank lines and comments; a trailing newline at the end of the file does not add a line. Reported at the start of the file.
+
+```yaml
+fileLines: { max: 300 }
+```
+
+```
+File lines: expected at most 300, found 412
 ```

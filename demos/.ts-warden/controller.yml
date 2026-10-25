@@ -4,6 +4,8 @@
 # The file is named after its class in kebab-case, with the `name.endsWith` suffix
 # separated by a dot: UserProfileController -> user-profile.controller.ts
 fileName: kebab-case
+# Lines in the file, including blank lines and comments.
+fileLines: { max: 200 }
 classes:
     count: 1
     name:

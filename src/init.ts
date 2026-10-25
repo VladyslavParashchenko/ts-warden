@@ -14,6 +14,7 @@ const rulesTemplate = `# Rules for every file matched by the \`example\` group.
 # Every option is optional; uncomment and adjust the ones you need.
 
 # fileName: kebab-case
+# fileLines: { max: 300 }
 
 classes:
     export: named

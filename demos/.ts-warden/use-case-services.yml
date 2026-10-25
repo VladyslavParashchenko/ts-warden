@@ -4,6 +4,8 @@
 # The file is named after its class in kebab-case, with the `name.endsWith` suffix
 # separated by a dot: CreateUserUseCase -> create-user.use-case.ts
 fileName: kebab-case
+# Lines in the file, including blank lines and comments.
+fileLines: { max: 150 }
 classes:
     count: 1
     name:
