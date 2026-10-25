@@ -33,7 +33,7 @@ The package is not published yet. Build it from source and link the binary:
 ```sh
 pnpm install
 pnpm build
-pnpm link --global
+pnpm add -g "$PWD"
 ```
 
 Then add a project file to the root of the project you want to check (see [Configuration](#configuration)) and run:
