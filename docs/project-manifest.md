@@ -27,6 +27,8 @@ my-project/
 └── tsconfig.json
 ```
 
+Create it with `ts-warden init` (add `--git-ignored` to keep it out of git; see the [main README](../README.md#creating-a-config)).
+
 The CLI reads `.ts-warden/project-manifest.yml` from the current directory. Pass another path with `-c`:
 
 ```sh

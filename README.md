@@ -36,21 +36,26 @@ pnpm build
 pnpm add -g "$PWD"
 ```
 
-Then add a `.ts-warden` directory with a project manifest to the root of the project you want to check (see [Configuration](#configuration)) and run from the root:
+Then, in the root of the project you want to check, create a starter config and run the analyzer:
 
 ```sh
+ts-warden init
 ts-warden
 ```
+
+`init` creates a `.ts-warden` directory with a project manifest and an example rules file; adjust them as described in [Configuration](#configuration).
 
 ## CLI
 
 ```
 ts-warden [options] [files...]
+ts-warden init [--git-ignored]
 
   -c, --config <path>    Project manifest (default: .ts-warden/project-manifest.yml)
   -p, --tsconfig <path>  tsconfig used for type resolution
                          (default: tsconfig.json in the project root)
       --format <format>  pretty | json (default: pretty)
+      --git-ignored      init: add a .gitignore that keeps the directory out of git
   -h, --help             Show this help
 ```
 
@@ -59,6 +64,20 @@ ts-warden [options] [files...]
 | `0`       | No violations               |
 | `1`       | Violations found            |
 | `2`       | Invalid arguments or config |
+
+### Creating a config
+
+`ts-warden init` creates `.ts-warden/` in the current directory:
+
+| File                   | Contents                                                           |
+| ---------------------- | ------------------------------------------------------------------ |
+| `project-manifest.yml` | One `example` group matching `src/**/*.{ts,tsx}`                   |
+| `example.yml`          | `classes.export: named` and commented examples of other options    |
+| `.gitignore`           | Only with `--git-ignored`: `*`, so git ignores the whole directory |
+
+Existing files are never overwritten: `init` creates the missing ones and reports the rest as skipped. Run `ts-warden init --git-ignored` in an initialized project to add only the `.gitignore`.
+
+Use `--git-ignored` when the config is personal and should not be committed. Commit the directory when the rules are shared by the team or checked in CI.
 
 ### Checking specific files
 
