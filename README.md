@@ -36,7 +36,7 @@ pnpm build
 pnpm add -g "$PWD"
 ```
 
-Then add a project file to the root of the project you want to check (see [Configuration](#configuration)) and run:
+Then add a `.ts-warden` directory with a project manifest to the root of the project you want to check (see [Configuration](#configuration)) and run from the root:
 
 ```sh
 ts-warden
@@ -47,9 +47,9 @@ ts-warden
 ```
 ts-warden [options] [files...]
 
-  -c, --config <path>    Project config (default: ts-warden.yml)
+  -c, --config <path>    Project manifest (default: .ts-warden/project-manifest.yml)
   -p, --tsconfig <path>  tsconfig used for type resolution
-                         (default: tsconfig.json next to the project config)
+                         (default: tsconfig.json in the project root)
       --format <format>  pretty | json (default: pretty)
   -h, --help             Show this help
 ```
@@ -74,9 +74,9 @@ Paths are relative to the current directory. Each file is checked by the groups 
 
 ## Configuration
 
-Configuration has two levels: a **project manifest** that maps globs to rules files, and **rules files** that describe what the matched files must contain.
+Configuration has two levels: a **project manifest** that maps globs to rules files, and **rules files** that describe what the matched files must contain. Both live in a `.ts-warden` directory in the project root. Globs are relative to the project root, `config` paths to the manifest.
 
-`ts-warden.yml`:
+`.ts-warden/project-manifest.yml`:
 
 ```yaml
 controllers:
@@ -87,7 +87,7 @@ handlers:
       config: ./handler.yml
 ```
 
-`controller.yml`:
+`.ts-warden/controller.yml`:
 
 ```yaml
 fileName: kebab-case
@@ -108,7 +108,7 @@ classes:
             count: 0
 ```
 
-`handler.yml`:
+`.ts-warden/handler.yml`:
 
 ```yaml
 fileName: kebab-case
@@ -152,7 +152,7 @@ Since violations make the process exit with `1`, `ts-warden` can run as a CI ste
 
 ```sh
 pnpm install      # also installs git hooks via prek
-pnpm dev -c test/fixtures/app/ts-warden.yml
+pnpm dev -c test/fixtures/app/.ts-warden/project-manifest.yml
 pnpm test
 pnpm typecheck
 pnpm check:fix    # biome lint + format

@@ -15,16 +15,32 @@ use-cases:
 
 ## Location
 
-The CLI reads `ts-warden.yml` from the current directory. Pass another path with `-c`:
+Configuration lives in a `.ts-warden` directory in the project root, next to the rules files:
 
-```sh
-ts-warden -c config/project-manifest.yml
+```
+my-project/
+├── .ts-warden/
+│   ├── project-manifest.yml
+│   ├── controller.yml
+│   └── use-case.yml
+├── src/
+└── tsconfig.json
 ```
 
-The directory that contains the manifest is the **project root**:
-- globs and `config` paths are resolved relative to it;
-- file paths in the output are relative to it;
-- `tsconfig.json` in it is used for type resolution when it exists. Pass another one with `-p`.
+The CLI reads `.ts-warden/project-manifest.yml` from the current directory. Pass another path with `-c`:
+
+```sh
+ts-warden -c tools/lint/project-manifest.yml
+```
+
+The **project root** is the parent of the directory that holds the manifest: `my-project/` above, `tools/` in the `-c` example.
+
+| Path                     | Resolved relative to                  |
+| ------------------------ | ------------------------------------- |
+| `glob`                   | the project root                      |
+| `config`                 | the directory that holds the manifest |
+| file paths in the output | the project root                      |
+| default `tsconfig.json`  | the project root; override with `-p`  |
 
 ## Groups
 
@@ -32,10 +48,10 @@ Each top-level key is a group name of your choice. The name appears in the outpu
 
 A group is a list of entries. Each entry has two required keys:
 
-| Key      | Value  | Description                                                     |
-| -------- | ------ | --------------------------------------------------------------- |
-| `glob`   | string | Files to check, relative to the project root                    |
-| `config` | string | Rules file applied to those files, relative to the project root |
+| Key      | Value  | Description                                                 |
+| -------- | ------ | ----------------------------------------------------------- |
+| `glob`   | string | Files to check, relative to the project root                |
+| `config` | string | Rules file applied to those files, relative to the manifest |
 - A group can list several entries, for example to apply one rules file to several directories.
 - Several groups can share one rules file. It is read only once.
 - A file matched by several entries is checked by each of them, and each violation is reported with its group.

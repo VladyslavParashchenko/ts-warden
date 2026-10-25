@@ -2,18 +2,20 @@ import { existsSync } from "node:fs"
 import path from "node:path"
 import { parseArgs } from "node:util"
 import { analyze } from "./analyzer.js"
-import { ConfigError, loadProjectConfig } from "./config.js"
+import { ConfigError, defaultManifestPath, loadProjectConfig } from "./config.js"
 import { formatPretty } from "./report.js"
 
 const usage = `Usage: ts-warden [options] [files...]
 
-Checks all files matched by the project config, or only the given files.
+Checks all files matched by the project manifest, or only the given files.
 Files that match no group are skipped.
 
+The project root is the parent of the directory holding the manifest.
+
 Options:
-  -c, --config <path>    Project config (default: ts-warden.yml)
+  -c, --config <path>    Project manifest (default: ${defaultManifestPath})
   -p, --tsconfig <path>  tsconfig used for type resolution
-                         (default: tsconfig.json next to the project config)
+                         (default: tsconfig.json in the project root)
       --format <format>  pretty | json (default: pretty)
   -h, --help             Show this help`
 
@@ -70,7 +72,7 @@ function parseCliArgs(argv: string[]) {
     return parseArgs({
         args: argv,
         options: {
-            config: { type: "string", short: "c", default: "ts-warden.yml" },
+            config: { type: "string", short: "c", default: defaultManifestPath },
             tsconfig: { type: "string", short: "p" },
             format: { type: "string", default: "pretty" },
             help: { type: "boolean", short: "h", default: false },

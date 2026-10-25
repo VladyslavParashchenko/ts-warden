@@ -5,7 +5,7 @@ import { run } from "../src/cli.js"
 import { ConfigError, loadProjectConfig } from "../src/config.js"
 
 const fixture = path.resolve(import.meta.dirname, "fixtures/app")
-const projectFile = path.join(fixture, "ts-warden.yml")
+const projectFile = path.join(fixture, ".ts-warden/project-manifest.yml")
 
 describe("analyze", () => {
     it("reports violations of the fixture project", async () => {
@@ -47,12 +47,12 @@ describe("analyze", () => {
 describe("loadProjectConfig", () => {
     it("rejects unknown keys", async () => {
         const dir = path.resolve(import.meta.dirname, "fixtures/invalid")
-        await expect(loadProjectConfig(path.join(dir, "ts-warden.yml"))).rejects.toThrow(
-            ConfigError,
-        )
-        await expect(loadProjectConfig(path.join(dir, "ts-warden.yml"))).rejects.toThrow(
-            /classes: Unrecognized key: "restrictions"/,
-        )
+        await expect(
+            loadProjectConfig(path.join(dir, ".ts-warden/project-manifest.yml")),
+        ).rejects.toThrow(ConfigError)
+        await expect(
+            loadProjectConfig(path.join(dir, ".ts-warden/project-manifest.yml")),
+        ).rejects.toThrow(/classes: Unrecognized key: "restrictions"/)
     })
 })
 

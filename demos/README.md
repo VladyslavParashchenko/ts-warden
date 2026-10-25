@@ -1,17 +1,17 @@
 # Demos
 
-Example configuration for a project with controllers, use cases and handlers. Copy these files to the root of your project and adjust the globs and rules.
+Example configuration for a project with controllers, use cases and handlers. Copy the [.ts-warden](.ts-warden/) directory to the root of your project and adjust the globs and rules.
 
-| File                                           | Purpose                                 |
-| ---------------------------------------------- | --------------------------------------- |
-| [project-manifest.yml](project-manifest.yml)   | Project file: maps globs to rules files |
-| [controller.yml](controller.yml)               | Rules for HTTP controllers              |
-| [use-case-services.yml](use-case-services.yml) | Rules for use case classes              |
-| [handler.yml](handler.yml)                     | Rules for handler functions             |
+| File                                                      | Purpose                                 |
+| --------------------------------------------------------- | --------------------------------------- |
+| [project-manifest.yml](.ts-warden/project-manifest.yml)   | Project file: maps globs to rules files |
+| [controller.yml](.ts-warden/controller.yml)               | Rules for HTTP controllers              |
+| [use-case-services.yml](.ts-warden/use-case-services.yml) | Rules for use case classes              |
+| [handler.yml](.ts-warden/handler.yml)                     | Rules for handler functions             |
 
 ## Controllers
 
-[controller.yml](controller.yml) expects each `*.controller.ts` file to contain exactly one class that:
+[controller.yml](.ts-warden/controller.yml) expects each `*.controller.ts` file to contain exactly one class that:
 - is named `*Controller` and lives in a matching file: `UserProfileController` → `user-profile.controller.ts`;
 - is exported by name;
 - is decorated with `@Controller`;
@@ -37,7 +37,7 @@ export class UserProfileController {
 
 ## Use cases
 
-[use-case-services.yml](use-case-services.yml) expects each `*.use-case.ts` file to contain exactly one class that:
+[use-case-services.yml](.ts-warden/use-case-services.yml) expects each `*.use-case.ts` file to contain exactly one class that:
 - is named `*UseCase` and lives in a matching file: `CreateUserUseCase` → `create-user.use-case.ts`;
 - is exported by name;
 - implements `IUseCase`;
@@ -57,7 +57,7 @@ export class CreateUserUseCase implements IUseCase<CreateUserInput, User> {
 
 ## Handlers
 
-[handler.yml](handler.yml) expects each `*.handler.ts` file to contain exactly one top-level function that:
+[handler.yml](.ts-warden/handler.yml) expects each `*.handler.ts` file to contain exactly one top-level function that:
 - is named `*Handler` and lives in a matching file: `createUserHandler` → `create-user.handler.ts`;
 - is exported by name;
 - is async, takes at most one parameter and declares its return type;
@@ -71,12 +71,10 @@ export const createUserHandler = async (event: CreateUserEvent): Promise<void> =
 
 ## Running
 
-The project file here is called `project-manifest.yml`, so pass it explicitly:
+With `.ts-warden/` in the project root, run from the root without arguments:
 
 ```sh
-ts-warden -c project-manifest.yml
+ts-warden
 ```
-
-Name it `ts-warden.yml` to run `ts-warden` without arguments.
 
 See the [configuration reference](../docs/README.md) for the full list of options.

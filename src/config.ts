@@ -12,8 +12,14 @@ export interface Target {
     rules: RulesFile
 }
 
+/** Default project manifest path, relative to the project root. */
+export const defaultManifestPath = path.join(".ts-warden", "project-manifest.yml")
+
 export interface ProjectConfig {
-    /** Directory containing the project file; globs are resolved against it. */
+    /**
+     * Parent of the directory holding the manifest (`<root>/.ts-warden/project-manifest.yml`).
+     * Globs, output paths and the default tsconfig are resolved against it.
+     */
     root: string
     targets: Target[]
 }
@@ -49,13 +55,15 @@ async function readYaml<T>(filePath: string, schema: z.ZodType<T>): Promise<T> {
 
 export async function loadProjectConfig(projectFilePath: string): Promise<ProjectConfig> {
     const absolutePath = path.resolve(projectFilePath)
-    const root = path.dirname(absolutePath)
+    // Rules files live next to the manifest; the project is one level up.
+    const configDir = path.dirname(absolutePath)
+    const root = path.dirname(configDir)
     const projectFile = await readYaml(absolutePath, projectFileSchema)
 
     // Several groups may share one rules file, so read each file only once.
     const rulesCache = new Map<string, Promise<RulesFile>>()
     const loadRules = (configPath: string) => {
-        const resolved = path.resolve(root, configPath)
+        const resolved = path.resolve(configDir, configPath)
         let rules = rulesCache.get(resolved)
         if (!rules) {
             rules = readYaml(resolved, rulesFileSchema)

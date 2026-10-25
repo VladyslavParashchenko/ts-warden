@@ -1,5 +1,6 @@
 # Entry point: each key is an arbitrary group name.
-# `config` paths are resolved relative to this file.
+# `glob` is relative to the project root (the parent of `.ts-warden`);
+# `config` is relative to this file.
 controllers:
     - glob: src/controllers/**/*.controller.ts
       config: ./controller.yml
