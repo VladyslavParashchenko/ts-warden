@@ -1,0 +1,3 @@
+controllers:
+    - glob: src/**/*.ts
+      config: ./rules.yml

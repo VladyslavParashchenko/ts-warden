@@ -1,0 +1,28 @@
+# Rules applied to every file matched by the group's glob.
+# Numbers mean an exact value; use `{ min, max }` for a range.
+
+# The file is named after its class in kebab-case, with the `name.endsWith` suffix
+# separated by a dot: CreateUserUseCase -> create-user.use-case.ts
+fileName: kebab-case
+classes:
+    count: 1
+    name:
+        endsWith: UseCase
+    # The class must be exported by name; `export default` is not allowed.
+    export: named
+    implements:
+        - IUseCase
+    # Constraints per method visibility: `public`, `protected`, `private` or `all`.
+    # Properties initialized with a function (`handle = () => {}`) count as methods.
+    methods:
+        public:
+            # Methods that implement an interface from `implements` are not counted.
+            count: 0
+            name:
+                oneOf:
+                    - execute
+            params: { max: 1 }
+            async: true
+            returnType: explicit
+        all:
+            static: false

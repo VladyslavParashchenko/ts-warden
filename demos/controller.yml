@@ -1,0 +1,36 @@
+# Rules applied to every file matched by the group's glob.
+# Numbers mean an exact value; use `{ min, max }` for a range.
+
+# The file is named after its class in kebab-case, with the `name.endsWith` suffix
+# separated by a dot: UserProfileController -> user-profile.controller.ts
+fileName: kebab-case
+classes:
+    count: 1
+    name:
+        endsWith: Controller
+    # The class must be exported by name; `export default` is not allowed.
+    export: named
+    # `allOf` — every listed decorator is required; `oneOf` — exactly one of them.
+    decorators:
+        allOf:
+            - Controller
+    # Constraints per method visibility: `public`, `protected`, `private` or `all`.
+    # Properties initialized with a function (`handle = () => {}`) count as methods.
+    methods:
+        public:
+            decorators:
+                oneOf:
+                    - Get
+                    - Post
+                    - Put
+                    - Patch
+                    - Delete
+            async: true
+            returnType: explicit
+        protected:
+            count: 0
+        private:
+            count: 0
+        all:
+            # Lines from the method name to its closing brace.
+            lines: { max: 30 }

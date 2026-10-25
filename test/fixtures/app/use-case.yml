@@ -1,0 +1,11 @@
+fileName: kebab-case
+classes:
+    count: 1
+    name:
+        endsWith: UseCase
+    export: named
+    implements:
+        - IUseCase
+    methods:
+        public:
+            count: 0

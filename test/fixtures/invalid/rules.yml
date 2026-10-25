@@ -1,0 +1,4 @@
+classes:
+    count: 1
+    restrictions:
+        privateMethods: 0

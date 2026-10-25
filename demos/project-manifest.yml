@@ -1,0 +1,11 @@
+# Entry point: each key is an arbitrary group name.
+# `config` paths are resolved relative to this file.
+controllers:
+    - glob: src/controllers/**/*.controller.ts
+      config: ./controller.yml
+use-cases:
+    - glob: src/use-cases/**/*.use-case.ts
+      config: ./use-case-services.yml
+handlers:
+    - glob: src/handlers/**/*.handler.ts
+      config: ./handler.yml

@@ -1,0 +1,8 @@
+fileName: kebab-case
+functions:
+    count: 1
+    name:
+        endsWith: Handler
+    export: named
+    params: { max: 1 }
+    async: true

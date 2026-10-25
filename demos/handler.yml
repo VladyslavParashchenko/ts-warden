@@ -1,0 +1,17 @@
+# Rules applied to every file matched by the group's glob.
+# Numbers mean an exact value; use `{ min, max }` for a range.
+
+# The file is named after its function in kebab-case, with the `name.endsWith` suffix
+# separated by a dot: createUserHandler -> create-user.handler.ts
+fileName: kebab-case
+# Top-level `function` declarations and variables initialized with a function
+# (`const handle = () => {}`).
+functions:
+    count: 1
+    name:
+        endsWith: Handler
+    export: named
+    params: { max: 1 }
+    async: true
+    returnType: explicit
+    lines: { max: 40 }

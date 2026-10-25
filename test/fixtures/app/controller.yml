@@ -1,0 +1,19 @@
+fileName: kebab-case
+classes:
+    count: 1
+    name:
+        endsWith: Controller
+    export: named
+    decorators:
+        allOf:
+            - Controller
+    methods:
+        public:
+            decorators:
+                oneOf:
+                    - Get
+                    - Post
+        private:
+            count: 0
+        protected:
+            count: 0
