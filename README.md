@@ -1,4 +1,9 @@
-# ts-warden
+<h1 align="center">
+    <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="assets/logo-dark.svg">
+        <img alt="ts-warden" src="assets/logo-light.svg" width="420">
+    </picture>
+</h1>
 
 Static analyzer that enforces architecture conventions in TypeScript projects. You describe what classes and functions in each part of the codebase must look like — controllers, use cases, handlers — and `ts-warden` reports every file that breaks the rules.
 

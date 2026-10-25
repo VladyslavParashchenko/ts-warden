@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="456" height="140" viewBox="0 0 456 140" role="img" aria-label="ts-warden">
+  <title>ts-warden</title>
+  <!-- Shield -->
+  <path d="M60 6 L110 23 V64 C110 98 89 121 60 134 C31 121 10 98 10 64 V23 Z" fill="#3178C6"/>
+  <path d="M60 6 L110 23 V64 C110 98 89 121 60 134 Z" fill="#000000" opacity="0.18"/>
+  <!-- Keyhole -->
+  <circle cx="60" cy="58" r="15" fill="#FFFFFF"/>
+  <path d="M52.5 66 L47 100 H73 L67.5 66 Z" fill="#FFFFFF"/>
+  <!-- Wordmark -->
+  <text x="132" y="92" font-family="ui-sans-serif, -apple-system, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="64" font-weight="700" letter-spacing="-1.5"><tspan fill="#3178C6">ts-</tspan><tspan fill="#1F2328">warden</tspan></text>
+</svg>
